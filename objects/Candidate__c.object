@@ -111,6 +111,14 @@
         <type>Phone</type>
     </fields>
     <fields>
+        <fullName>Short_listed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Short-listed</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Skill__c</fullName>
         <description>Candidate&apos;s skill and knowledge</description>
         <externalId>false</externalId>
@@ -162,6 +170,11 @@
         <visibleLines>15</visibleLines>
     </fields>
     <label>Candidate</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>Candidate Name</label>
         <type>Text</type>
@@ -169,4 +182,16 @@
     <pluralLabel>Candidates</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Age_greater_than_14</fullName>
+        <active>true</active>
+        <errorConditionFormula>year(today()) - YEAR(Date_of_Birth__c) &lt; 14</errorConditionFormula>
+        <errorMessage>Candidate must be at least 14 years old</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Phone_10_Digit</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(NOT(REGEX(  Phone__c , &quot;(\\d){10}&quot;)), NOT(REGEX( Phone__c, &quot;(\\d){11}&quot;)))</errorConditionFormula>
+        <errorMessage>Phone must have 10-11 number</errorMessage>
+    </validationRules>
 </CustomObject>

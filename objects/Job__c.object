@@ -86,16 +86,15 @@
     </fields>
     <fields>
         <fullName>Employee_Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Employee_Id</label>
         <referenceTo>Employee__c</referenceTo>
         <relationshipLabel>Jobs</relationshipLabel>
         <relationshipName>Jobs</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Experience__c</fullName>
@@ -254,11 +253,28 @@
         <visibleLines>10</visibleLines>
     </fields>
     <label>Job</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>Job Title</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Jobs</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Deadline_In_Future</fullName>
+        <active>true</active>
+        <errorConditionFormula>Deadline__c &lt;= today()</errorConditionFormula>
+        <errorMessage>Deadline must be in the future</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Skill_Not_Empty</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISBLANK( Skill__c )</errorConditionFormula>
+        <errorMessage>Skill can&apos;t be empty</errorMessage>
+    </validationRules>
 </CustomObject>

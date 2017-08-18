@@ -58,7 +58,7 @@
     <fields>
         <fullName>Candidate_Id__c</fullName>
         <externalId>false</externalId>
-        <label>Candidate Id</label>
+        <label>Candidate Name</label>
         <referenceTo>Candidate__c</referenceTo>
         <relationshipLabel>Jobs</relationshipLabel>
         <relationshipName>Interviews</relationshipName>
@@ -72,22 +72,13 @@
         <fullName>Employee_Id__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
         <externalId>false</externalId>
-        <label>Employee Id</label>
+        <label>Employee Name</label>
         <referenceTo>Employee__c</referenceTo>
         <relationshipLabel>Interviews</relationshipLabel>
         <relationshipName>Interviews</relationshipName>
         <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Feedback__c</fullName>
-        <externalId>false</externalId>
-        <label>Feedback</label>
-        <length>32768</length>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Interview_Date__c</fullName>
@@ -100,7 +91,7 @@
     <fields>
         <fullName>Job_Id__c</fullName>
         <externalId>false</externalId>
-        <label>Job Id</label>
+        <label>Job Title</label>
         <referenceTo>Job__c</referenceTo>
         <relationshipLabel>Interviews</relationshipLabel>
         <relationshipName>Candidate</relationshipName>
@@ -129,6 +120,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Final Interview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Technical Interview</fullName>
                 <default>false</default>
             </picklistValues>
@@ -143,9 +138,15 @@
         <type>Picklist</type>
     </fields>
     <label>Interview</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
+        <displayFormat>Interview-{0000}</displayFormat>
         <label>Interview Name</label>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Interviews</pluralLabel>
     <searchLayouts/>

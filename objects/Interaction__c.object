@@ -59,7 +59,7 @@
     <fields>
         <fullName>Candidate_Id__c</fullName>
         <externalId>false</externalId>
-        <label>Candidate Id</label>
+        <label>Candidate name</label>
         <referenceTo>Candidate__c</referenceTo>
         <relationshipLabel>Interactions</relationshipLabel>
         <relationshipName>InterviewResults</relationshipName>
@@ -73,7 +73,7 @@
         <fullName>Date__c</fullName>
         <description>Interactive date</description>
         <externalId>false</externalId>
-        <label>Date</label>
+        <label>Interaction Time</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
@@ -116,6 +116,10 @@
                 <fullName>Face-to-face Discussion</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Interview Feedback</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -123,9 +127,9 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Strengh__c</fullName>
+        <fullName>Strength__c</fullName>
         <externalId>false</externalId>
-        <label>Strengh</label>
+        <label>Strength</label>
         <length>32768</length>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
@@ -141,11 +145,24 @@
         <visibleLines>5</visibleLines>
     </fields>
     <label>Interaction</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
+        <displayFormat>Interaction-{0000}</displayFormat>
         <label>Interaction Name</label>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Interactions</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>InteractionDate_Not_Future</fullName>
+        <active>true</active>
+        <description>Interaction date must not be in the future</description>
+        <errorConditionFormula>DATEVALUE(Date__c) &gt;  TODAY()</errorConditionFormula>
+        <errorMessage>Interaction date must not be in the future</errorMessage>
+    </validationRules>
 </CustomObject>

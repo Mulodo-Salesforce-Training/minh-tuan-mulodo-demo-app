@@ -92,6 +92,11 @@
         <type>Picklist</type>
     </fields>
     <label>Employee</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>Employee Name</label>
         <type>Text</type>
