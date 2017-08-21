@@ -45,7 +45,12 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>Lightning_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Lightning_Layout</fullName>
+        <fields>Name</fields>
+        <label>Lightning Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Job requirement from the concerned department /  line managers</description>
     <enableActivities>true</enableActivities>
@@ -56,10 +61,22 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
-        <fullName>Age__c</fullName>
+        <fullName>Age_From__c</fullName>
         <externalId>false</externalId>
-        <label>Age</label>
+        <label>Age From</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Age_To__c</fullName>
+        <externalId>false</externalId>
+        <label>Age To</label>
         <precision>2</precision>
         <required>false</required>
         <scale>0</scale>
@@ -83,6 +100,16 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>Required skill and knowledge</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>Employee_Id__c</fullName>
@@ -242,16 +269,6 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    <fields>
-        <fullName>Skill__c</fullName>
-        <description>Required skill and knowledge</description>
-        <externalId>false</externalId>
-        <label>Skill</label>
-        <length>32768</length>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
-    </fields>
     <label>Job</label>
     <listViews>
         <fullName>All</fullName>
@@ -266,6 +283,12 @@
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
+        <fullName>AgeFrom_lessthan_ageTo</fullName>
+        <active>true</active>
+        <errorConditionFormula>Age_From__c &gt; Age_To__c</errorConditionFormula>
+        <errorMessage>Age from must be less than age to</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Deadline_In_Future</fullName>
         <active>true</active>
         <errorConditionFormula>Deadline__c &lt;= today()</errorConditionFormula>
@@ -274,7 +297,7 @@
     <validationRules>
         <fullName>Skill_Not_Empty</fullName>
         <active>true</active>
-        <errorConditionFormula>ISBLANK( Skill__c )</errorConditionFormula>
+        <errorConditionFormula>ISBLANK( Description__c )</errorConditionFormula>
         <errorMessage>Skill can&apos;t be empty</errorMessage>
     </validationRules>
 </CustomObject>

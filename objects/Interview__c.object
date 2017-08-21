@@ -55,13 +55,14 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Candidate_Id__c</fullName>
         <externalId>false</externalId>
         <label>Candidate Name</label>
         <referenceTo>Candidate__c</referenceTo>
         <relationshipLabel>Jobs</relationshipLabel>
-        <relationshipName>Interviews</relationshipName>
+        <relationshipName>Jobs</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackTrending>false</trackTrending>
@@ -81,6 +82,15 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Feedback__c</fullName>
+        <externalId>false</externalId>
+        <label>Feedback</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Interview_Date__c</fullName>
         <externalId>false</externalId>
         <label>Interview Date</label>
@@ -93,8 +103,8 @@
         <externalId>false</externalId>
         <label>Job Title</label>
         <referenceTo>Job__c</referenceTo>
-        <relationshipLabel>Interviews</relationshipLabel>
-        <relationshipName>Candidate</relationshipName>
+        <relationshipLabel>Candidates</relationshipLabel>
+        <relationshipName>Interviews</relationshipName>
         <relationshipOrder>1</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackTrending>false</trackTrending>
@@ -111,24 +121,28 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Passed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Passed</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Type__c</fullName>
         <externalId>false</externalId>
         <label>Type</label>
         <picklist>
             <picklistValues>
-                <fullName>Preliminary Test</fullName>
+                <fullName>Face To Face</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Final Interview</fullName>
+                <fullName>Skype</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Technical Interview</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Negotiation</fullName>
+                <fullName>Phone</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -145,7 +159,7 @@
     </listViews>
     <nameField>
         <displayFormat>Interview-{0000}</displayFormat>
-        <label>Interview Name</label>
+        <label>Interview Number</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Interviews</pluralLabel>

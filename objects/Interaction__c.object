@@ -56,6 +56,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Candidate_Id__c</fullName>
         <externalId>false</externalId>
@@ -77,27 +78,6 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
-    </fields>
-    <fields>
-        <fullName>Interview_Id__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Interview Id</label>
-        <referenceTo>Interview__c</referenceTo>
-        <relationshipLabel>Interactions</relationshipLabel>
-        <relationshipName>Interactions</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Is_Pass__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Whether candidate pass the interview</description>
-        <externalId>false</externalId>
-        <label>Is Pass</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Method__c</fullName>
