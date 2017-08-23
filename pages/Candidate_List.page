@@ -1,0 +1,200 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" controller="Pagination">
+
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Candidate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style type="text/css">
+		/*    --------------------------------------------------
+	:: General
+	-------------------------------------------------- */
+	.interview {
+		color: #5cb85c;
+	}
+	.offered {
+		color: #f0ad4e;
+	}
+	.cancel {
+		color: #d9534f;
+	}
+
+	.date {
+		font-size: 11px;
+		color: #999;
+	}
+
+	.name {
+		color: #2BBCDE;
+		font-size: 14px;
+		font-weight: bold;
+		line-height: normal;
+		margin: 0;
+	}
+  </style>
+
+  <!-- Import the Design System style sheet -->
+  <apex:slds />
+</head>
+<body>
+
+  <!-- REQUIRED SLDS WRAPPER -->
+  <div class="slds-scope">
+
+    <!-- MASTHEAD -->
+    <p class="slds-text-heading--label slds-m-bottom--small">
+      Salesforce Lightning Design System Trailhead Module
+    </p>
+    <!-- / MASTHEAD -->
+
+<!-- PAGE HEADER -->
+<div class="slds-page-header" role="banner">
+  <div class="slds-grid">
+    <div class="slds-col slds-has-flexi-truncate">
+      <!-- HEADING AREA -->
+      <!-- <p class="slds-text-title--caps slds-line-height--reset">Candidates</p>
+      <h1 class="slds-page-header__title slds-truncate" title="My Accounts">My Accounts</h1> -->
+      <!-- / HEADING AREA -->
+      <!-- HEADING AREA -->
+		<div class="slds-media slds-no-space slds-grow">
+		  <div class="slds-media__figure">
+		    <span class="slds-avatar slds-avatar--medium">
+		      <img src="{!URLFOR($Asset.SLDS, 'assets/images/avatar1.jpg')}" alt="" />
+		    </span>
+		  </div>
+		  <div class="slds-media__body">
+		    <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="My Candidates">Candidates</h1>
+		  </div>
+		</div>
+	<!-- / HEADING AREA -->
+
+    </div>
+  </div>
+  <div class="slds-grid">
+    <div class="slds-col slds-align-bottom slds-p-top--small">
+    	<apex:outputText value="{0} item(s)" 
+    					 styleClass="slds-text-body--small page-header__info">
+    		<apex:param value="{!resultSize}" />
+    	</apex:outputText>
+      <!-- <p class="slds-text-body--small page-header__info">COUNT items</p> -->
+    </div>
+  </div>
+</div>
+<!-- / PAGE HEADER -->
+
+
+<!-- PRIMARY CONTENT WRAPPER -->
+<div class="myapp">
+
+  <!-- <ul class="slds-list--dotted slds-m-top--large">
+    <li>Candidates 1</li>
+    <li>Candidates 2</li>
+    <li>Candidates 3</li>
+    <li>Candidates 4</li>
+    <li>Candidates 5</li>
+    <li>Candidates 6</li>
+    <li>Candidates 7</li>
+    <li>Candidates 8</li>
+    <li>Candidates 9</li>
+    <li>Candidates 10</li>
+  </ul> -->
+  	<apex:form>
+  		<apex:pageBlock>
+		  	<apex:outputPanel id ="candidates_list">
+		  		<table>
+			  	<apex:repeat value="{!Candidates}" var="c">
+			  		
+			  			<tr data-status="pagado">
+							<td>
+								<div class="ckbox">
+									<input type="checkbox" id="checkbox1" />
+									<label for="checkbox1"></label>
+								</div>
+							</td>
+							
+							<td>
+								<div class="media">
+									<a href="#" class="pull-left">
+										<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo" />
+									</a>
+									<div>
+										<p>
+											<apex:outputText value="{0, date, MMMM dd ',' yyyy}" styleClass="date">
+												<apex:param value="{!c.Date_of_Birth__c}" />
+											</apex:outputText>
+											&nbsp; 
+											<apex:outputText value="{!c.name}" styleClass="name"/>
+											&nbsp; 
+											<apex:outputText value="({0})"
+															 styleClass="{!if(c.State__c == 'Interview', 'interview',
+															              if(c.State__c == 'Cancel', 'cancel',
+															              if(c.State__c == 'Offered', 'offered', '')))}">
+												<apex:param value="{!c.State__c}" />
+											</apex:outputText>
+										</p>
+										
+										<div>
+											<apex:outputText value="{!c.Background__c}"/>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+			  	</apex:repeat>
+			  </table>
+			  <table class="slds-table" style="width: 100%"><tr>
+				    <td style="text-align: left; width: 33%" id="page_number">
+				        <!-- Page X of Y -->
+				        Page: <apex:outputText value="{!pageNumber} of {!totalPage}" />
+				    </td>            
+
+				    <td style="text-align: center; width: 33%" id="command_button">
+				        <!-- Previous page -->
+				        <apex:commandLink action="{!previous}" rendered="{!hasPrevious}" rerender="candidates_list" value="<< Previous" />
+				        <apex:outputText value="Previous" style="color: #ccc;" rendered="{!NOT(hasPrevious)}" />
+				        &nbsp;&nbsp;  
+				        <!-- Next page -->
+				        <apex:commandLink action="{!next}" rendered="{!hasNext}" rerender="candidates_list" value="Next >>" />
+				        <apex:outputText value="Next" style="color: #ccc;" rendered="{!NOT(hasNext)}" />
+				    </td>
+				       
+
+				    <td style="text-align: right; width: 33%">
+				        <!-- Records per page -->
+				        Records per page:
+						<apex:selectList value="{! pageSize }" size="1">
+						    <apex:selectOption itemValue="5" itemLabel="5"/>
+						    <apex:selectOption itemValue="10" itemLabel="10"/>
+						    <apex:actionSupport event="onchange" reRender="candidates_list"/>
+						</apex:selectList>
+				    </td>
+				</tr></table>
+		    </apex:outputPanel>
+		    
+        </apex:pageBlock>
+    </apex:form>
+</div>
+<!-- / PRIMARY CONTENT WRAPPER -->
+
+
+<!-- FOOTER -->
+<footer role="contentinfo" class="slds-p-around--large">
+  <!-- LAYOUT GRID -->
+  <div class="slds-grid slds-grid--align-spread">
+    <p class="slds-col">Salesforce Lightning Design System Example</p>
+    <p class="slds-col">&copy; Tuan</p>
+  </div>
+  <!-- / LAYOUT GRID -->
+</footer>
+<!-- / FOOTER -->
+
+
+  </div>
+  <!-- / REQUIRED SLDS WRAPPER -->
+
+  <!-- JAVASCRIPT -->
+  <!-- / JAVASCRIPT -->
+</body>
+</html>
+</apex:page>
