@@ -4,14 +4,14 @@
 	<!--Using lightning style-->
 	<div class="slds-scope">
 		<!--Using form to submit filter to the server-->
-		<apex:form>
+		<apex:form >
 			<apex:pageBlock title="Passed Candidate" id="candidates_list">
-				Filter: 
+				<!-- Filter: 
 				<apex:selectList value="{! pageSize }" size="1">
 						    <apex:selectOption itemValue="5" itemLabel="5"/>
 						    <apex:selectOption itemValue="20" itemLabel="20"/>
 						    <apex:actionSupport event="onchange" reRender="candidate_list"/>
-						</apex:selectList>
+						</apex:selectList> -->
 				<!--Display table-->
 				<apex:pageBlockTable value="{!Candidates}" var="c">
 					<apex:column value="{!c.Name}" />
@@ -22,35 +22,38 @@
 					<apex:column value="{!c.Gender__c}" />
 					<apex:column value="{!c.Salary__c}" />
 				</apex:pageBlockTable>
-
-				<!-- Pagination -->
 				<table class="slds-table" style="width: 100%"><tr>
-				    <td>
+				    <td style="text-align: left; width: 33%" id="page_number">
 				        <!-- Page X of Y -->
 				        Page: <apex:outputText value="{!pageNumber} of {!totalPage}" />
 				    </td>            
 
-				    <td align="center">
+				    <td style="text-align: center; width: 33%" id="command_button">
 				        <!-- Previous page -->
-				        <apex:commandLink action="{!previous}" rendered='{!hasPrevious}' rerender="candidates_list" value="<< Previous" />
-				        <apex:outputText value="<< Previous" style="color: #ccc;" rendered="{!NOT(hasPrevious)}" />
+				        <apex:commandLink action="{!previous}" rendered="{!hasPrevious}" rerender="candidates_list" value="<< Previous" />
+				        <apex:outputText value="Previous" style="color: #ccc;" rendered="{!NOT(hasPrevious)}" />
 				        &nbsp;&nbsp;  
 				        <!-- Next page -->
-				        <apex:commandLink action="{!next}" rendered="{!hasNext}" rerender="candidates_list" value='Next' />
-				        <apex:outputText value="Next >>" style="color: #ccc;" rendered="{!NOT(hasNext)}" />
+				        <apex:commandLink action="{!next}" rendered="{!hasNext}" rerender="candidates_list" value="Next >>" />
+				        <apex:outputText value="Next" style="color: #ccc;" rendered="{!NOT(hasNext)}" />
 				    </td>
-				    
-				    <td align="right">
+				       
+
+				    <td style="text-align: right; width: 33%">
+
+				    	Total Candidates: <apex:outputText value="{!resultSize}" />
+				    	&nbsp;&nbsp; &nbsp; 
 				        <!-- Records per page -->
 				        Records per page:
 						<apex:selectList value="{! pageSize }" size="1">
 						    <apex:selectOption itemValue="5" itemLabel="5"/>
 						    <apex:selectOption itemValue="20" itemLabel="20"/>
-						    <apex:actionSupport event="onchange" reRender="candidate_list"/>
+						    <apex:actionSupport event="onchange" reRender="candidates_list"/>
 						</apex:selectList>
 				    </td>
 				</tr></table>
 			</apex:pageBlock>
+							<!-- Pagination -->
 		</apex:form>
 
 	</div>
