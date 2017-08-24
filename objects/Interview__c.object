@@ -163,6 +163,15 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Interviews</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>Candidate_Id__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Employee_Id__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Interview_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Passed__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Candidate_Id__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Employee_Id__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Interview_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Passed__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

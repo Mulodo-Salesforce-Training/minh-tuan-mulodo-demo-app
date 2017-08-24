@@ -81,6 +81,28 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>Avatar_Path__c</fullName>
+        <defaultValue>&quot;https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Avatar Path</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Avatar__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE( Avatar_Path__c,&apos;&apos; )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Avatar</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Background__c</fullName>
         <description>Background of candidate</description>
         <externalId>false</externalId>
@@ -193,6 +215,38 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Word-of-mouth referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <externalId>false</externalId>
+        <label>State</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Interview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sent Offer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Offered</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
