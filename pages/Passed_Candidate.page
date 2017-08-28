@@ -14,7 +14,9 @@
 						</apex:selectList> -->
 				<!--Display table-->
 				<apex:pageBlockTable value="{!Candidates}" var="c">
-					<apex:column value="{!c.Name}" />
+					<apex:column >
+						<apex:outputLink value="/apex/Interview_Feedback?id={!c.Id}">{!c.Name}</apex:outputLink>
+					</apex:column>
 					<apex:column value="{!c.Email__c}" />
 					<apex:column value="{!c.Phone__c}" />
 					<apex:column headerValue="Jobs" value="{!c.Jobs__r.size}" />

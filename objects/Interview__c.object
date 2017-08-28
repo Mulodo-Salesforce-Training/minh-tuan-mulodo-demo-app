@@ -104,7 +104,7 @@
         <label>Job Title</label>
         <referenceTo>Job__c</referenceTo>
         <relationshipLabel>Candidates</relationshipLabel>
-        <relationshipName>Interviews</relationshipName>
+        <relationshipName>Candidates</relationshipName>
         <relationshipOrder>1</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackTrending>false</trackTrending>

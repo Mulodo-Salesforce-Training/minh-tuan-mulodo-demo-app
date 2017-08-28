@@ -94,7 +94,7 @@
     <fields>
         <fullName>Avatar__c</fullName>
         <externalId>false</externalId>
-        <formula>IMAGE( Avatar_Path__c,&apos;&apos; )</formula>
+        <formula>IMAGE( Avatar_Path__c , &quot;&quot;, 50, 50)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Avatar</label>
         <required>false</required>
@@ -308,4 +308,23 @@ SUBSTITUTE(Phone__c, &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;),
         <errorMessage>Phone must have 10-11 number. 
 ie: (xx) xxx-xx-xxx, 0123456789</errorMessage>
     </validationRules>
+    <webLinks>
+        <fullName>Interview_Feedback</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Interview Feedback</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/apex/Interview_Feedback?id={! Candidate__c.Id }</url>
+    </webLinks>
 </CustomObject>

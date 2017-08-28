@@ -45,7 +45,7 @@ public with sharing class Pagination {
      
     private void initQuery()
     {
-        query = 'SELECT Name, Background__c, State__c, Date_of_Birth__c FROM Candidate__c';
+        query = 'SELECT Id, Name, Background__c, State__c, Date_of_Birth__c FROM Candidate__c';
     }
 
     private void setFilter()
